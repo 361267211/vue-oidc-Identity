@@ -7,19 +7,8 @@
 </template>
 
 <script>
-//import {userMgr} from './CallBack.vue'
-
-// var config = {
-//   authority: "http://localhost:5001",
-//   client_id: "Vue_Client",
-//   client_secret: "Vue_Client_Secret",
-//   redirect_uri: "http://127.0.0.1:5003/CallBack",
-//   response_type: "code",
-//   scope: "openid profile api1",
-//   post_logout_redirect_uri: "http://localhost:5003/",
-//   state:"xyz"
-// };
-// var mgr = new Oidc.UserManager(config);
+import { openIdConnectSettings} from '../oidc';
+import Oidc from "oidc-client";
 
 //var mgr = userMgr;
 export default {
@@ -33,6 +22,16 @@ export default {
   methods: {
     api() {
       console.log('todo something');
+    },
+    logout(){
+      debugger;
+      localStorage.getItem('token') ;
+      localStorage.clear()
+
+
+      let userManager = new Oidc.UserManager(openIdConnectSettings);
+      userManager.signoutRedirect();
+
     }
   },
   mounted() {
