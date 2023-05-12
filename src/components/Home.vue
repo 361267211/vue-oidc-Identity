@@ -2,6 +2,7 @@
   <div>
     <button @click="api">调用API</button>
     <button @click="logout">退出登录</button>
+    <button @click="refreshToken">更新token</button>
     <pre>{{ res }}</pre>
   </div>
 </template>
@@ -25,13 +26,25 @@ export default {
     },
     logout(){
       debugger;
-      localStorage.getItem('token') ;
       localStorage.clear()
 
 
       let userManager = new Oidc.UserManager(openIdConnectSettings);
       userManager.signoutRedirect();
 
+    },
+    refreshToken(){
+      debugger;
+      console.log('old token:' + localStorage.getItem('token'));
+      let mgr = new Oidc.UserManager(openIdConnectSettings);
+      let self = this
+      mgr.renewToken().then(
+        newToken => {
+          self.logToken(newToken)
+        },
+        err => {
+          console.log(err)
+      }) 
     }
   },
   mounted() {

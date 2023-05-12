@@ -11,7 +11,7 @@ export const openIdConnectSettings = {
     redirect_uri: `${vueBase}/CallBack`,// 表示重定向URI，认证服务器回调的客户端页面。可选项
     post_logout_redirect_uri: `${vueBase}`,
     silent_redirect_uri: `${vueBase}/redirect-silentrenew`,
-    scope: 'openid profile api1', // 表示申请的权限范围，可选项
+    scope: 'openid profile api1 offline_access', // 表示申请的权限范围，可选项
     response_type: `code`,
     //automaticSilentRenew: true,
 };
