@@ -1,6 +1,5 @@
 <template>
-    <el-container class="layout-container-demo" style="height: 100%">
-
+  <el-container class="layout-container-demo" style="height: 100%">
     <!-- 左侧导航栏 -->
     <el-aside width="20%">
       <el-scrollbar>
@@ -60,41 +59,38 @@
       </el-scrollbar>
     </el-aside>
 
-
     <!-- 右侧布局 -->
     <el-container>
       <!-- 头部导航栏 -->
-      <el-header style="text-align: right; font-size: 12px; width:100%">
+      <el-header style="text-align: right; font-size: 12px; width: 100%">
         <div class="toolbar">
-          <el-button type="primary"  @click="api">调用资源API</el-button>
-          <el-button type="primary"  @click="refreshToken">更新token</el-button>
-          <el-button type="danger"  @click="logout">退出登录</el-button>
+          <el-button type="primary" @click="api">调用资源API</el-button>
+          <el-button type="primary" @click="refreshToken">更新token</el-button>
+          <el-button type="danger" @click="logout">退出登录</el-button>
           <span>Tom</span>
         </div>
       </el-header>
       <!-- 主题展示区 -->
       <el-main>
-          <span>我是大哥大</span>
+        <span>我是大哥大</span>
       </el-main>
-
     </el-container>
   </el-container>
 </template>
 
-<script >
-import { openIdConnectSettings} from '../oidc';
+<script>
+import { openIdConnectSettings } from "../oidc";
 import Oidc from "oidc-client";
 
-import { ref } from 'vue'
-import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
+import { ref } from "vue";
+import { Menu as IconMenu, Message, Setting } from "@element-plus/icons-vue";
 
 const item = {
-  date: '2016-05-02',
-  name: 'Tom',
-  address: 'No. 189, Grove St, Los Angeles',
-}
-const tableData = ref(Array.from({ length: 20 }).fill(item))
-
+  date: "2016-05-02",
+  name: "Tom",
+  address: "No. 189, Grove St, Los Angeles",
+};
+const tableData = ref(Array.from({ length: 20 }).fill(item));
 
 //var mgr = userMgr;
 export default {
@@ -107,23 +103,19 @@ export default {
 
   methods: {
     api() {
-      console.log('todo something');
+      console.log("todo something");
     },
-    logout(){
-      localStorage.clear()
-
+    logout() {
+      localStorage.clear();
 
       let userManager = new Oidc.UserManager(openIdConnectSettings);
       userManager.signoutRedirect();
-
     },
-    refreshToken(){
-      console.log('old token:' + localStorage.getItem('token'));
-    }
+    refreshToken() {
+      console.log("old token:" + localStorage.getItem("token"));
+    },
   },
-  mounted() {
-  
-  },
+  mounted() {},
 };
 </script>
 
@@ -141,7 +133,6 @@ export default {
   border-right: none;
 }
 .layout-container-demo .el-main {
-
 }
 
 .layout-container-demo .toolbar {
@@ -152,8 +143,6 @@ export default {
   right: 20px;
 }
 /* 高度占满 */
-.el-container{
-
-
+.el-container {
 }
 </style>
