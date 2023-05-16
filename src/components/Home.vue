@@ -1,15 +1,26 @@
 <template>
-  <div>
-    <button @click="api">调用API</button>
-    <button @click="logout">退出登录</button>
-    <button @click="refreshToken">更新token</button>
-    <pre>{{ res }}</pre>
-  </div>
+  <el-row class="mb-4">
+    <el-button type="primary"  @click="api">调用资源API</el-button>
+    <el-button type="success"  @click="logout">更新token</el-button>
+    <el-button type="info"  @click="refreshToken">退出登录</el-button>
+  </el-row>
+
+  
 </template>
 
 <script>
 import { openIdConnectSettings} from '../oidc';
 import Oidc from "oidc-client";
+
+//element ui
+import {
+  Check,
+  Delete,
+  Edit,
+  Message,
+  Search,
+  Star,
+} from '@element-plus/icons-vue'
 
 //var mgr = userMgr;
 export default {
