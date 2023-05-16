@@ -19,11 +19,11 @@ export default {
             userManager.getUser().then((user) => {
               if(user){
                   localStorage.setItem('userInfo',JSON.stringify(user));
-                  debugger;
+                  
                   localStorage.setItem('token', user.access_token);
                   localStorage.setItem('refresh_token', user.refresh_token);
  
-                  this.$router.push("/Home");//跳转到vue主页
+                  this.$router.push("/");//跳转到vue主页
                 }else{
                   userManager.signinRedirect(); //执行重定向 
                 }
