@@ -142,7 +142,4 @@ export default {
   height: 100%;
   right: 20px;
 }
-/* 高度占满 */
-.el-container {
-}
 </style>
