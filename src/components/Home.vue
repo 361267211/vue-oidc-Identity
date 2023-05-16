@@ -118,17 +118,7 @@ export default {
 
     },
     refreshToken(){
-      debugger;
       console.log('old token:' + localStorage.getItem('token'));
-      let mgr = new Oidc.UserManager(openIdConnectSettings);
-      let self = this
-      mgr.renewToken().then(
-        newToken => {
-          self.logToken(newToken)
-        },
-        err => {
-          console.log(err)
-      }) 
     }
   },
   mounted() {
