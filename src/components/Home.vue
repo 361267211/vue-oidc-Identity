@@ -84,6 +84,7 @@ import Oidc from "oidc-client";
 
 import { ref } from "vue";
 import { Menu as IconMenu, Message, Setting } from "@element-plus/icons-vue";
+import axios from "axios";
 
 const item = {
   date: "2016-05-02",
@@ -111,8 +112,37 @@ export default {
       let userManager = new Oidc.UserManager(openIdConnectSettings);
       userManager.signoutRedirect();
     },
-    refreshToken() {
-      console.log("old token:" + localStorage.getItem("token"));
+    async refreshToken() {
+      const requestData = new URLSearchParams();
+      requestData.append("grant_type", "refresh_token");
+      requestData.append("refresh_token", localStorage.getItem("refresh_token"));
+      requestData.append("client_id", openIdConnectSettings.client_id);
+      requestData.append("client_secret", openIdConnectSettings.client_secret);
+      const config = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      };
+
+      axios
+        .post(
+          `${openIdConnectSettings.authority}/connect/token`,
+          requestData.toString(),
+          config
+        )
+        .then((response) => {
+          // 处理成功响应
+          console.log('换取token成功：'+ JSON.stringify(response.data));
+
+          //重新存储token
+           localStorage.setItem('token',response.data.access_token);
+           localStorage.setItem('refresh_token',response.data.refresh_token);
+        })
+        .catch((error) => {
+          // 处理错误
+          console.error(error);
+        });
+
     },
   },
   mounted() {},
