@@ -80,6 +80,7 @@
 
 <script>
 import { openIdConnectSettings } from "../oidc";
+import { apiSourceConnectSettings } from "../apiSource";
 import Oidc from "oidc-client";
 
 import { ref } from "vue";
@@ -105,6 +106,23 @@ export default {
   methods: {
     api() {
       console.log("todo something");
+      axios
+        .get(
+          `${apiSourceConnectSettings.apiEndpointIpPort}/api/TestAuth`,
+          {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then((response) => {
+          // 处理成功响应
+          console.log("data:" + response.data);
+        })
+        .catch((error) => {
+          // 处理错误
+          console.error(error);
+        });
     },
     logout() {
       localStorage.clear();
@@ -132,17 +150,16 @@ export default {
         )
         .then((response) => {
           // 处理成功响应
-          console.log('换取token成功：'+ JSON.stringify(response.data));
+          console.log("换取token成功：" + JSON.stringify(response.data));
 
           //重新存储token
-           localStorage.setItem('token',response.data.access_token);
-           localStorage.setItem('refresh_token',response.data.refresh_token);
+          localStorage.setItem("token", response.data.access_token);
+          localStorage.setItem("refresh_token", response.data.refresh_token);
         })
         .catch((error) => {
           // 处理错误
           console.error(error);
         });
-
     },
   },
   mounted() {},
