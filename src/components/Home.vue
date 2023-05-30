@@ -62,17 +62,16 @@
     <!-- 右侧布局 -->
     <el-container>
       <!-- 头部导航栏 -->
-      <el-header style="text-align: right; font-size: 12px; width: 100%">
+      <el-header style="text-align: right; font-size: 12px; width: 100%">        
         <div class="toolbar">
           <el-button type="primary" @click="api">调用资源API</el-button>
           <el-button type="primary" @click="refreshToken">更新token</el-button>
           <el-button type="danger" @click="logout">退出登录</el-button>
-          <span>Tom</span>
         </div>
       </el-header>
       <!-- 主题展示区 -->
       <el-main>
-        <span>我是大哥大</span>
+        <span>{{res}}</span>
       </el-main>
     </el-container>
   </el-container>
@@ -87,12 +86,6 @@ import { ref } from "vue";
 import { Menu as IconMenu, Message, Setting } from "@element-plus/icons-vue";
 import axios from "axios";
 
-const item = {
-  date: "2016-05-02",
-  name: "Tom",
-  address: "No. 189, Grove St, Los Angeles",
-};
-const tableData = ref(Array.from({ length: 20 }).fill(item));
 
 //var mgr = userMgr;
 export default {
@@ -118,6 +111,7 @@ export default {
         .then((response) => {
           // 处理成功响应
           console.log("data:" + response.data);
+          this.res=`${response.data}`;
         })
         .catch((error) => {
           // 处理错误
