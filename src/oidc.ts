@@ -1,4 +1,4 @@
-export const identityServerBase = 'https://localhost:5001';//目标服务器登录地址
+export const identityServerBase = 'https://localhost:5002';//目标服务器登录地址
 export const vueBase = 'http://127.0.0.1:5003';
  
 // 参考文档 https://github.com/IdentityModel/oidc-client-js/wiki
