@@ -10,7 +10,10 @@
             </template>
             <el-menu-item-group>
               <template #title>Group 1</template>
-              <el-menu-item index="1-1">Option 1</el-menu-item>
+              <el-menu-item index="1-1">
+                
+                <router-link to="/fonds">礼金系统</router-link>
+              </el-menu-item>
               <el-menu-item index="1-2">Option 2</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="Group 2">
@@ -67,11 +70,15 @@
           <el-button type="primary" @click="api">调用资源API</el-button>
           <el-button type="primary" @click="refreshToken">更新token</el-button>
           <el-button type="danger" @click="logout">退出登录</el-button>
+          <div><router-view></router-view></div>
         </div>
       </el-header>
       <!-- 主题展示区 -->
       <el-main>
         <span>{{res}}</span>
+        
+          
+         
       </el-main>
     </el-container>
   </el-container>
@@ -85,7 +92,7 @@ import Oidc from "oidc-client";
 import { ref } from "vue";
 import { Menu as IconMenu, Message, Setting } from "@element-plus/icons-vue";
 import axios from "axios";
-
+import FondsView from "@/components/FondsView.vue";
 
 //var mgr = userMgr;
 export default {
@@ -95,7 +102,9 @@ export default {
       res: "My Home",
     };
   },
-
+  components:{
+    FondsView
+  },
   methods: {
     api() {
       console.log("todo something");
