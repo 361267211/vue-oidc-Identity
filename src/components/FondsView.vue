@@ -31,9 +31,7 @@
 <script lang="ts" setup>
 
 import { ref, onMounted, reactive } from 'vue';
-//导入API
-import { get, post, getDynamicynamic, getFileUseBlobByPost } from '@/request/http';
-
+import { testGetApi} from '@/Api/FondApi'
 interface User {
   id: string
   name: string
@@ -48,11 +46,9 @@ const SearchFonds = (row?: User) => {
 }
 
 onMounted(() => {
-  // getData();
 })
 
 
-const testGetApi = (p: any) => get('/api/Fond/GetContactsByEvent', p);
 
 const testGetFun = async () => {
   const res = await testGetApi({ eventId: '1' });

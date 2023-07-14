@@ -5,7 +5,7 @@
 </template>
 
 <script>
-export default {
+export default App= {
   name: 'App'
 }
 </script>
