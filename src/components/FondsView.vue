@@ -33,7 +33,7 @@
 import { ref, onMounted, reactive } from 'vue';
 //导入API
 import API from "../plugins/axiosInstance.js";
-//import { get, post, getDynamicynamic, getFileUseBlobByPost } from '@/request/http';
+import { get, post, getDynamicynamic, getFileUseBlobByPost } from '@/request/http';
 
 interface User {
   date: string
@@ -43,57 +43,22 @@ interface User {
 
 
 const input = ref('');
-const tableData = reactive([
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    email: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    email: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    email: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    email: 'No. 189, Grove St, Los Angeles',
-  },
-])
 const SearchFonds = (row?: User) => {
-  let tab = [{
-    date: '2016-05-03',
-    name: 'Tom',
-    email: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    email: 'No. 189, Grove St, Los Angeles',
-  }];
-  tableData.push(...tab);
-  console.log('调用方法。。。');
+  testGetFun();
+
 }
 
 onMounted(() => {
-  tableData.length = 0;
-  console.log('初始化加载。。。');
-  getData();
-  //testGetFun();
+ // getData();
 })
 
 
-// const testGetApi = p => get('demo2/api/goods', p);
+const testGetApi = p => get('api/Fond/GetContactsByEvent', p);
 
-// const testGetFun = async () => {
-//   const res = await testGetApi({});
-//   console.log(res)
-// }
+const testGetFun = async () => {
+  const res = await testGetApi({eventId:'1'});
+  console.log(res)
+}
 
 //数据
 const testData = reactive({

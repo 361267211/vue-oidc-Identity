@@ -7,6 +7,7 @@ import { message } from 'ant-design-vue'
 // // 引入storage模块，操作token
 // import { session } from '@/utils/storage.js'
 
+
 // 请求超时时间
 axios.defaults.timeout = 10000
 
@@ -15,7 +16,7 @@ axios.interceptors.request.use(
   config => {
     // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
     // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
-    const token = localStorage.get('token')
+    const token = localStorage.getItem('token')
     token && (config.headers.Authorization = token)
     if(config.method.toUpperCase() === 'POST') {
       config.headers['Content-Type'] = 'application/json;charset=utf-8'
@@ -60,6 +61,7 @@ axios.interceptors.response.use(
  * @param {Object} params [请求时携带的参数]
  */
 export function get(url, params) {
+  debugger;
   return new Promise((resolve, reject) =>{
     axios.get(url, {
       params: params
