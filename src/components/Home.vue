@@ -70,15 +70,13 @@
           <el-button type="primary" @click="api">调用资源API</el-button>
           <el-button type="primary" @click="refreshToken">更新token</el-button>
           <el-button type="danger" @click="logout">退出登录</el-button>
-          <div><router-view></router-view></div>
+           
         </div>
       </el-header>
       <!-- 主题展示区 -->
       <el-main>
-        <span>{{res}}</span>
-        
-          
-         
+        <!-- 内容展示区 -->
+        <router-view/>
       </el-main>
     </el-container>
   </el-container>

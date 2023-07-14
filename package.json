@@ -10,10 +10,13 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "ant-design-vue": "^4.0.0",
     "axios": "^1.4.0",
     "element-plus": "^2.3.4",
     "oidc-client": "^1.11.5",
     "pinia": "^2.0.28",
+    "qs": "^6.11.2",
+    "storage": "^0.2.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },

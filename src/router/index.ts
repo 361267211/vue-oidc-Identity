@@ -16,13 +16,15 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: Home
-    },
-    {
-      path: '/fonds',
-      name: 'Fonds SYS',
-      component: FondsView
+      component: Home,
+      children:[
+        {
+          path: 'fonds',
+          component: FondsView,
+        }
+      ]
     }
+
   ]
 })
 

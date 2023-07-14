@@ -26,6 +26,16 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+  // devServer:{
+  //   proxy:{
+  //     '/fond2': {
+  //       target: 'https://localhost:6001/',
+  //       pathRewrite: { '^/fond2': '' },
+  //       ws: false,
+  //       changeOrigin: true
+  //     },
+  //   }
+  // },
   server:{
     host:"127.0.0.1"
   }
