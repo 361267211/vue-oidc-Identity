@@ -31,7 +31,7 @@
 <script lang="ts" setup>
 
 import { ref, onMounted, reactive } from 'vue';
-import { testGetApi} from '@/Api/FondApi'
+import { GetFondByEvent} from '@/Api/FondApi'
 interface User {
   id: string
   name: string
@@ -51,7 +51,7 @@ onMounted(() => {
 
 
 const testGetFun = async () => {
-  const res = await testGetApi({ eventId: '1' });
+  const res = await GetFondByEvent({ eventId: '1' });
   testData.list = res;
   console.log(res)
 }
