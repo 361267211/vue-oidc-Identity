@@ -15,7 +15,7 @@
 
       <el-main>
         <el-table :data="testData.list" stripe style="width: 100%">
-          <el-table-column prop="date" label="Date" width="180" />
+          <el-table-column prop="id" label="Date" width="180" />
           <el-table-column prop="name" label="Name" width="180" />
           <el-table-column prop="email" label="Email" />
         </el-table>
@@ -32,11 +32,10 @@
 
 import { ref, onMounted, reactive } from 'vue';
 //导入API
-import API from "../plugins/axiosInstance.js";
 import { get, post, getDynamicynamic, getFileUseBlobByPost } from '@/request/http';
 
 interface User {
-  date: string
+  id: string
   name: string
   email: string
 }
@@ -49,14 +48,15 @@ const SearchFonds = (row?: User) => {
 }
 
 onMounted(() => {
- // getData();
+  // getData();
 })
 
 
-const testGetApi = p => get('api/Fond/GetContactsByEvent', p);
+const testGetApi = (p: any) => get('/api/Fond/GetContactsByEvent', p);
 
 const testGetFun = async () => {
-  const res = await testGetApi({eventId:'1'});
+  const res = await testGetApi({ eventId: '1' });
+  testData.list = res;
   console.log(res)
 }
 
@@ -65,15 +65,5 @@ const testData = reactive({
   list: []
 });
 
-//测试请求方法
-const getData = function () {
-  API({
-    url: '/api/Fond/GetContactsByEvent?eventId=1',
-    method: 'get'
-
-  }).then((res:any) => {
-    testData.list = res.data;
-  });
-}
 
 </script>

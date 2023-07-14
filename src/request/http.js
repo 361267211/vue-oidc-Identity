@@ -7,12 +7,22 @@ import { message } from 'ant-design-vue'
 // // 引入storage模块，操作token
 // import { session } from '@/utils/storage.js'
 
+const API = axios.create({
+  baseURL: 'https://localhost:6001',
+  timeout:2000
+  
+  });
+
+  // const API = axios.create({
+
+    
+  //   });
 
 // 请求超时时间
-axios.defaults.timeout = 10000
+API.defaults.timeout = 10000
 
 // 请求拦截器
-axios.interceptors.request.use(
+API.interceptors.request.use(
   config => {
     // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
     // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
@@ -27,7 +37,7 @@ axios.interceptors.request.use(
     return Promise.error(error)
   })
 // 响应拦截器
-axios.interceptors.response.use(
+API.interceptors.response.use(
   response => {
     console.log(response)
     if (response.status === 200) {
@@ -63,7 +73,7 @@ axios.interceptors.response.use(
 export function get(url, params) {
   debugger;
   return new Promise((resolve, reject) =>{
-    axios.get(url, {
+    API.get(url, {
       params: params
     })
       .then(res => {
@@ -81,7 +91,7 @@ export function get(url, params) {
 */
 export function post(url, params) {
   return new Promise((resolve, reject) => {
-    axios.post(url, QS.stringify(params))
+    API.post(url, QS.stringify(params))
       .then(res => {
         resolve(res.data)
       })
@@ -98,7 +108,7 @@ export function post(url, params) {
 export function getDynamicynamic(url, params) {
   return new Promise((resolve, reject) =>{
     const completeUrl = `${url}/${params}`
-    axios.get(completeUrl, {})
+    API.get(completeUrl, {})
       .then(res => {
         resolve(res.data)
       })
