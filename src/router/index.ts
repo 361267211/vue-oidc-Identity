@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import CallBack from '../components/CallBack.vue';
 import Home from '../components/Home.vue';
 import FondsView from '../components/FondsView.vue';
+import FondEventsView from '../components/FondEventsView.vue';
 import { openIdConnectSettings } from "../oidc";
 import Oidc from "oidc-client";
 
@@ -21,7 +22,11 @@ const router = createRouter({
         {
           path: 'fonds',
           component: FondsView,
-        }
+        },
+        {
+          path: 'fondEvents',
+          component: FondEventsView,
+        },
       ]
     }
 
